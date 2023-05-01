@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="bootstrap-5.2.3-dist/css/bootstrap.min.css">
+  <script src="bootstrap-5.2.3-dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    .givepadd {
+      padding: 30px;
+    }
+
+    .topcardimg {
+      height: 400px;
+      width: 100%;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+    }
+
+    .imgfocard2 {
+
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      border-radius: inherit;
+    }
+
+    .postbox {
+      border-radius: 10px;
+    }
+
+    .firstblog {
+      display: flex;
+      justify-content: space-evenly;
+      flex-wrap: wrap;
+    }
+
+    .imgholder {
+      width: 100%;
+      max-width: 100%;
+      height: 200px;
+
+    }
+
+    .showsmallcontent {
+      max-height: 150px;
+      overflow: hidden;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg bg-success givepadd text-light">
+    <div class="container-fluid">
+      <a class="navbar-brand text-light" href="#">
+        <h1>SUNZINE</h1>
+      </a>
+      <button class="navbar-toggler text-light" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-light">
+          <li class="nav-item">
+            <button class="btn btn-outline-success  text-light" onclick="home()">Home</button>
+          </li>
+          <li class="nav-item">
+            <button class="btn btn-outline-success  text-light" onclick="newblog()">New blog</button>
+          </li>
+          <li class="nav-item">
+            <button class="btn btn-outline-success  text-light" onclick="allyourblog()">All your blog</button>
+          </li>
+          <li class="nav-item">
+            <button class="btn btn-outline-success  text-light" onclick="yourlikedblogs()">liked blog</button>
+          </li>
+
+        </ul>
+        <div class="d-flex" role="search">
+          <input class="form-control me-2" id="inputtosearch" type="search" placeholder="Search blog"
+            aria-label="Search">
+          <button class="btn btn-outline-light" onclick="searchforblog()" type="submit">Search</button>
+        </div>
+        <button class="btn btn-outline-light m-1" id="login" type="submit" onclick="login()">log in</button>
+        <button class="btn btn-outline-light m-1" id="logout" type="submit" onclick="logout()">log out</button>
+      </div>
+    </div>
+  </nav>
+  <main>
+
+
+
+    <div class="w-100 d-flex align-center justify-content-center">
+      <button class="btn btn-success text-light  my-2 w-75" onclick="newblog()" id="firstbuttonontop">
+        create new blog post
+      </button>
+    </div>
+
+    <div id="firstblog" class="firstblog d-flex justify-content-evenly">
+
+    </div>
+
+
+
+  </main>
+
+  <!-- show modal -->
+  <div class="modal fade" id="exampleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-scrollable modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-success">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel"></h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="modalbody">
+          <img src="" id="youwillbeshowingimg" class="m-auto w-100" alt="">
+        </div>
+        <div class="modal-footer  bg-success">
+          <button type="button" class="btn btn-light text-success" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
+
+<script>
+
+  let Sunzineloged_in_user = JSON.parse(localStorage.getItem("Sunzineloged_in_user"))
+  // console.log(Sunzineloged_in_user);
+
+  if (Sunzineloged_in_user == null) {
+  
+document.getElementById("login").style.display=""
+document.getElementById("logout").style.display="none"
+  } else {
+   
+  }
+
+  function login() {
+    console.log(1);
+  }
+  function logout() {
+    console.log(2);
+  }
+
+  let Sunzinebolgarray = JSON.parse(localStorage.getItem("Sunzinebolgarray"))
+  // console.log(Sunzinebolgarray)
+  if (Sunzinebolgarray == null) {
+    Sunzinebolgarray = [
+      {
+        title: "Lorem ipsum",
+        content: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente ullam perspiciatis expedita fuga officiis nisi dolore ab quasi at quas debitis autem, cupiditate quos nesciunt accusamus rerum? Consequatur, doloremque eum?Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente ullam perspiciatis expedita fuga officiis nisi dolore ab quasi at quas debitis autem, cupiditate quos nesciunt accusamus rerum? Consequatur, doloremque eum?Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente ullam perspiciatis expedita fuga officiis nisi dolore ab quasi at quas debitis autem, cupiditate quos nesciunt accusamus rerum? Consequatur, doloremque eum?Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente ullam perspiciatis expedita fuga officiis nisi dolore ab quasi at quas debitis autem, cupiditate quos nesciunt accusamus rerum? Consequatur, doloremque eum?Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente ullam perspiciatis expedita fuga officiis nisi dolore ab quasi at quas debitis autem, cupiditate quos nesciunt accusamus rerum? Consequatur, doloremque eum?Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente ullam perspiciatis expedita fuga officiis nisi dolore ab quasi at quas debitis autem, cupiditate quos nesciunt accusamus rerum? Consequatur, doloremque eum?",
+        image: "./images/default.jpg",
+        author: "default",
+        date: "default",
+        likedarray: [],
+        comments: []
+      },
+      {
+        title: "Lorem ipsum",
+        content: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente ullam perspiciatis expedita fuga officiis nisi dolore ab quasi at quas debitis autem, cupiditate quos nesciunt accusamus rerum? Consequatur, doloremque eum?Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente ullam perspiciatis expedita fuga officiis nisi dolore ab quasi at quas debitis autem, cupiditate quos nesciunt accusamus rerum? Consequatur, doloremque eum?Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente ullam perspiciatis expedita fuga officiis nisi dolore ab quasi at quas debitis autem, cupiditate quos nesciunt accusamus rerum? Consequatur, doloremque eum?Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente ullam perspiciatis expedita fuga officiis nisi dolore ab quasi at quas debitis autem, cupiditate quos nesciunt accusamus rerum? Consequatur, doloremque eum?Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente ullam perspiciatis expedita fuga officiis nisi dolore ab quasi at quas debitis autem, cupiditate quos nesciunt accusamus rerum? Consequatur, doloremque eum?Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente ullam perspiciatis expedita fuga officiis nisi dolore ab quasi at quas debitis autem, cupiditate quos nesciunt accusamus rerum? Consequatur, doloremque eum?",
+        image: "./images/default.jpg",
+        author: "default",
+        date: "default",
+        likedarray: [],
+        comments: []
+      },
+      {
+        title: "Lorem ipsum",
+        content: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente ullam perspiciatis expedita fuga officiis nisi dolore ab quasi at quas debitis autem, cupiditate quos nesciunt accusamus rerum? Consequatur, doloremque eum?Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente ullam perspiciatis expedita fuga officiis nisi dolore ab quasi at quas debitis autem, cupiditate quos nesciunt accusamus rerum? Consequatur, doloremque eum?Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente ullam perspiciatis expedita fuga officiis nisi dolore ab quasi at quas debitis autem, cupiditate quos nesciunt accusamus rerum? Consequatur, doloremque eum?Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente ullam perspiciatis expedita fuga officiis nisi dolore ab quasi at quas debitis autem, cupiditate quos nesciunt accusamus rerum? Consequatur, doloremque eum?Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente ullam perspiciatis expedita fuga officiis nisi dolore ab quasi at quas debitis autem, cupiditate quos nesciunt accusamus rerum? Consequatur, doloremque eum?Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente ullam perspiciatis expedita fuga officiis nisi dolore ab quasi at quas debitis autem, cupiditate quos nesciunt accusamus rerum? Consequatur, doloremque eum?",
+        image: "./images/default.jpg",
+        author: "default",
+        date: "default",
+        likedarray: [],
+        comments: []
+      },
+      {
+        title: "Lorem ipsum",
+        content: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente ullam perspiciatis expedita fuga officiis nisi dolore ab quasi at quas debitis autem, cupiditate quos nesciunt accusamus rerum? Consequatur, doloremque eum?Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente ullam perspiciatis expedita fuga officiis nisi dolore ab quasi at quas debitis autem, cupiditate quos nesciunt accusamus rerum? Consequatur, doloremque eum?Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente ullam perspiciatis expedita fuga officiis nisi dolore ab quasi at quas debitis autem, cupiditate quos nesciunt accusamus rerum? Consequatur, doloremque eum?Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente ullam perspiciatis expedita fuga officiis nisi dolore ab quasi at quas debitis autem, cupiditate quos nesciunt accusamus rerum? Consequatur, doloremque eum?Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente ullam perspiciatis expedita fuga officiis nisi dolore ab quasi at quas debitis autem, cupiditate quos nesciunt accusamus rerum? Consequatur, doloremque eum?Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente ullam perspiciatis expedita fuga officiis nisi dolore ab quasi at quas debitis autem, cupiditate quos nesciunt accusamus rerum? Consequatur, doloremque eum?",
+        image: "./images/default.jpg",
+        author: "default",
+        date: "default",
+        likedarray: [],
+        comments: []
+
+      },
+    ]
+
+    localStorage.setItem('Sunzinebolgarray', JSON.stringify(Sunzinebolgarray))
+
+  }
+
+  // console.log(Sunzinebolgarray);
+
+  function home() {
+    document.getElementById("firstbuttonontop").style.display = "block"
+    document.getElementById("firstblog").innerHTML = ""
+
+    for (let index = 0; index < Sunzinebolgarray.length; index++) {
+      const element = Sunzinebolgarray[index];
+
+      document.getElementById("firstblog").innerHTML += `
+
+<div class="card mb-3 bg-success text-light m-2" style="max-width: 1040px;">
+      <div class="row  g-0">
+        <div class="col-md-4 imgfocard2" style="background-image: url(${element.image});" id="" >
+         
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h2 class="card-title">${element.title}</h2>
+            <p class="card-text showsmallcontent">${element.content}</p>
+            <p class="card-text text-light"><small class="">Author: ${element.author}</small></p>
+            <p class="card-text text-light"><small class="">Date: ${element.date}</small></p>
+            <div>
+              <button class="btn btn-light text-success m-2" onclick="readmore(${index})">read more</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+`
+    }
+
+  }
+  home()
+
+  let reader = new FileReader()
+
+  function pickfile(ev) {
+    let file = ev.target.files[0]
+    // console.log(file);
+    reader.onload = (file) => {
+      // console.log(reader.result);
+      document.getElementById("formimg").src = reader.result
+      // reader.readAsDataURL(file)
+    }
+
+    if (file) {
+      let data = reader.readAsDataURL(file);
+    }
+  }
+
+
+  function newblog() {
+    document.getElementById("firstbuttonontop").style.display = "none"
+    document.getElementById("firstblog").innerHTML = `
+  <div class="col-sm-8 col-lg-6 p-2 m-auto my-3 bg-success text-light postbox m-2">
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">
+          <h3>Title</h3>
+        </label>
+        <input type="text" class="form-control" id="title" placeholder="Blog Title">
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">
+          <h4>Images</h4>
+        </label>
+        <div class=" form-control my-1 imgholder  d-flex align-center justify-content-center ">
+          <img src="" class="h-100 m-auto" id="formimg" alt="IMAGE PREVIEW">
+        </div>
+        <input class="form-control" onchange="pickfile(event)" type="file" name="" id="">
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">
+          <h4>Content</h4>
+        </label>
+        <textarea class="form-control" id="content" placeholder="Blog Content" rows="20"></textarea>
+      </div>
+      <button class="btn btn-light text-success m-2" onclick="posttheinputblog()">Post Blog</button>
+    </div>
+
+
+`
+
+  }
+
+  function posttheinputblog() {
+    document.getElementById("title").value
+    document.getElementById("formimg").src
+    document.getElementById("content").value
+    // console.log(document.getElementById("title").value)
+    // console.log(document.getElementById("formimg").src)
+    // console.log(document.getElementById("content").value)
+    let thetime = new Date()
+    let thedate = thetime.getDate() + "/" + thetime.getMonth() + "/" + thetime.getFullYear()
+    let time = thetime.getHours() + ":" + thetime.getMinutes() + ":" + thetime.getSeconds()
+    // console.log(thedate + "   " + time);
+    // console.log(Sunzineloged_in_user.name);
+    // console.log(
+    //   {
+    //     title: document.getElementById("title").value,
+    //     content: document.getElementById("content").value,
+    //     image: document.getElementById("formimg").src,
+    //     author: Sunzineloged_in_user.name,
+    //     date: thedate + "   " + time,
+    //     likedarray: [],
+    //     comments: []
+    //   }
+    // );
+
+    Sunzinebolgarray.push({
+      title: document.getElementById("title").value,
+      content: document.getElementById("content").value,
+      image: document.getElementById("formimg").src,
+      author: Sunzineloged_in_user.name,
+      date: thedate + "   " + time,
+      likedarray: [],
+      comments: []
+    })
+
+    localStorage.setItem('Sunzinebolgarray', JSON.stringify(Sunzinebolgarray))
+
+    home()
+
+    // let today = new Date()
+    // console.log(today);
+    // console.log(today.getFullYear());
+    // console.log(today.getDate());
+    // console.log(today.getDay());
+    // console.log(today.getHours());
+    // console.log(today.getTimezoneOffset());
+  }
+
+
+
+  function readmore(i) {
+    // console.log(Sunzinebolgarray[i]);
+
+    document.getElementById("firstbuttonontop").style.display = "block"
+    document.getElementById("firstblog").innerHTML = ""
+    // console.log(Sunzinebolgarray[i]);
+    document.getElementById("firstblog").innerHTML = `
+
+     <div class="card border-success m-2" style="width: 38rem;">
+
+<div class="card-img-top topcardimg position-relative" style="background-image:url(${Sunzinebolgarray[i].image});" >
+  <button class="btn btn-success  position-absolute bottom-0 m-2 " onclick="viewtheimage(${i})" data-bs-toggle="modal" data-bs-target="#exampleModal"  >click to view image</button>
+</div>
+<div class="card-body bg-success text-light ">
+  <h5 class="card-title">${Sunzinebolgarray[i].title}</h5>
+  <p class="card-text ">${Sunzinebolgarray[i].content}</p>
+  <p class="card-text">Author: ${Sunzinebolgarray[i].author}</p>
+  <p class="card-text">${Sunzinebolgarray[i].date}</p>
+  <div>
+    <button class="btn btn-success btn-outline-light text-light m-2" id="like${i}"  onclick="likethepost(${i})">like</button>
+    <button class="btn btn-primary  text-light m-2 " id="unlike${i}" style="display: none;"  onclick="unlikethepost(${i})">unlike</button>
+
+  </div>
+</div>
+<div id="commentdiv">
+  
+  </div>
+
+</div>  
+`
+    let checkifyoulike = Sunzinebolgarray[i].likedarray.find((currentuserlike) => currentuserlike.name == Sunzineloged_in_user.name)
+    if (checkifyoulike) {
+      document.getElementById("like" + i).style.display = "none"
+      document.getElementById("unlike" + i).style.display = "block"
+    }
+    // comment section
+    document.getElementById("commentdiv").innerHTML += `
+<div class="card  bg-light text-success m-2" id="" >
+  <div class="card-header bg-success text-light">
+    <p class="fs-5 m-0 fw-bold">Comment Section</p>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Write your comment</h5>
+ <textarea name="" id="commentsectiontextarea" cols="30" rows="10" class="d-block my-2 text-success p-2  w-100"></textarea>
+    <button class="btn btn-success" onclick="postcommenttotheblog(${i})">submit</button>
+  </div>
+  <div id="showcommentincommentsection">
+    </div>
+</div>`
+    document.getElementById("showcommentincommentsection").innerHTML = ""
+    for (let index = 0; index < Sunzinebolgarray[i].comments.length; index++) {
+      const element = Sunzinebolgarray[i].comments[index];
+
+      if (Sunzinebolgarray[i].comments[index].name == Sunzineloged_in_user.name) {
+        document.getElementById("showcommentincommentsection").innerHTML += `
+      <div class="card text-bg-success mb-3" >
+    <div class="card-header "><p class="fw-bold fs-6 m-0">${element.name}</p></div>
+    <div class="card-body">
+      <p class="card-title">${element.thecomment}</p>
+      <p class="card-text">${element.time}</p>
+      <button class="btn btn-success text-light m-2 btn-outline-light" onclick="deletecomment(${index},${i})">Delete comment</button>
+
+    </div>
+  </div>`
+      } else {
+        document.getElementById("showcommentincommentsection").innerHTML += `
+      <div class="card text-bg-success mb-3" >
+    <div class="card-header "><p class="fw-bold fs-6 m-0">${element.name}</p></div>
+    <div class="card-body">
+      <p class="card-title">${element.thecomment}</p>
+      <p class="card-text">${element.time}</p>
+
+    </div>
+  </div>`
+      }
+
+    }
+
+  }
+
+  function postcommenttotheblog(i) {
+    let thetime = new Date()
+    let thedate = thetime.getDate() + "/" + thetime.getMonth() + "/" + thetime.getFullYear()
+    let time = thetime.getHours() + ":" + thetime.getMinutes() + ":" + thetime.getSeconds()
+    Sunzinebolgarray[i].comments.push({
+      name: Sunzineloged_in_user.name,
+      thecomment: document.getElementById("commentsectiontextarea").value,
+      time: time + "  " + thedate
+    })
+
+    localStorage.setItem('Sunzinebolgarray', JSON.stringify(Sunzinebolgarray))
+
+    console.log(Sunzinebolgarray[i].comments);
+    document.getElementById("showcommentincommentsection").innerHTML = ""
+    for (let index = 0; index < Sunzinebolgarray[i].comments.length; index++) {
+      const element = Sunzinebolgarray[i].comments[index];
+
+      if (Sunzinebolgarray[i].comments[index].name == Sunzineloged_in_user.name) {
+        document.getElementById("showcommentincommentsection").innerHTML += `
+      <div class="card text-bg-success mb-3" >
+    <div class="card-header "><p class="fw-bold fs-6 m-0">${element.name}</p></div>
+    <div class="card-body">
+      <p class="card-title">${element.thecomment}</p>
+      <p class="card-text">${element.time}</p>
+      <button class="btn btn-success text-light m-2 btn-outline-light" onclick="deletecomment(${index},${i})">Delete comment</button>
+
+    </div>
+  </div>`
+      } else {
+        document.getElementById("showcommentincommentsection").innerHTML += `
+      <div class="card text-bg-success mb-3" >
+    <div class="card-header "><p class="fw-bold fs-6 m-0">${element.name}</p></div>
+    <div class="card-body">
+      <p class="card-title">${element.thecomment}</p>
+      <p class="card-text">${element.time}</p>
+
+    </div>
+  </div>`
+      }
+    }
+    document.getElementById("commentsectiontextarea").value = ""
+  }
+
+  function viewtheimage(i) {
+    document.getElementById("youwillbeshowingimg").src = Sunzinebolgarray[i].image
+  }
+
+  function likethepost(i) {
+    // console.log(Sunzinebolgarray[i].likedarray);
+    Sunzinebolgarray[i].likedarray.push({
+      name: Sunzineloged_in_user.name,
+      like: true,
+    })
+    // console.log(Sunzinebolgarray[i].likedarray);
+    let checkifyoulike = Sunzinebolgarray[i].likedarray.find((currentuserlike) => currentuserlike.name == Sunzineloged_in_user.name)
+    if (checkifyoulike) {
+      document.getElementById("like" + i).style.display = "none"
+      document.getElementById("unlike" + i).style.display = "block"
+    }
+
+    localStorage.setItem('Sunzinebolgarray', JSON.stringify(Sunzinebolgarray))
+
+
+  }
+  function unlikethepost(i) {
+    // console.log(Sunzinebolgarray[i].likedarray);
+
+    let checkifyoulike = Sunzinebolgarray[i].likedarray.find((currentuserlike) => currentuserlike.name == Sunzineloged_in_user.name)
+    if (checkifyoulike) {
+      // console.log(checkifyoulike);
+      Sunzinebolgarray[i].likedarray.splice(Sunzinebolgarray[i].likedarray.indexOf(checkifyoulike), 1);
+      // console.log(Sunzinebolgarray[i].likedarray);
+      document.getElementById("like" + i).style.display = "block"
+      document.getElementById("unlike" + i).style.display = "none"
+    }
+
+    localStorage.setItem('Sunzinebolgarray', JSON.stringify(Sunzinebolgarray))
+
+  }
+
+  function allyourblog() {
+    document.getElementById("firstbuttonontop").style.display = "block"
+    document.getElementById("firstblog").innerHTML = ""
+
+    for (let index = 0; index < Sunzinebolgarray.length; index++) {
+      const element = Sunzinebolgarray[index];
+
+      if (element.author != Sunzineloged_in_user.name) {
+        continue
+      } else {
+        document.getElementById("firstblog").innerHTML += `
+
+<div class="card mb-3 bg-success text-light m-2" style="max-width: 1040px;">
+      <div class="row  g-0">
+        <div class="col-md-4 imgfocard2" style="background-image: url(${element.image});" id="" >
+         
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h2 class="card-title">${element.title}</h2>
+            <p class="card-text showsmallcontent">${element.content}</p>
+            <p class="card-text text-light"><small class="">Author: ${element.author}</small></p>
+            <p class="card-text text-light"><small class="">Date: ${element.date}</small></p>
+            <div>
+              <button class="btn btn-light text-success m-2" onclick="readmore(${index})">read more</button>
+              <button class="btn btn-light text-success m-2" onclick="deleteyourblog(${index})">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+`
+      }
+    }
+
+  }
+
+  function deleteyourblog(params) {
+    Sunzinebolgarray.splice(params, 1)
+    localStorage.setItem('Sunzinebolgarray', JSON.stringify(Sunzinebolgarray))
+    allyourblog()
+
+  }
+
+  function yourlikedblogs() {
+    document.getElementById("firstbuttonontop").style.display = "block"
+    document.getElementById("firstblog").innerHTML = ""
+
+    for (let index = 0; index < Sunzinebolgarray.length; index++) {
+      const element = Sunzinebolgarray[index];
+
+
+      let checkifyoulike = Sunzinebolgarray[index].likedarray.find((currentuserlike) => currentuserlike.name == Sunzineloged_in_user.name)
+      if (checkifyoulike) {
+        document.getElementById("firstblog").innerHTML += `
+
+<div class="card mb-3 bg-success text-light m-2" style="max-width: 1040px;">
+      <div class="row  g-0">
+        <div class="col-md-4 imgfocard2" style="background-image: url(${element.image});" id="" >
+         
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h2 class="card-title">${element.title}</h2>
+            <p class="card-text showsmallcontent">${element.content}</p>
+            <p class="card-text text-light"><small class="">Author: ${element.author}</small></p>
+            <p class="card-text text-light"><small class="">Date: ${element.date}</small></p>
+            <div>
+              <button class="btn btn-light text-success m-2" onclick="readmore(${index})">read more</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+`
+
+      } else {
+        continue
+      }
+    }
+
+  }
+
+
+  function searchforblog() {
+    document.getElementById("inputtosearch").value
+
+    // let result = [];
+
+    // Sunzinebolgarray.forEach((obj, index) => {
+    //   Object.values(obj).forEach(value => {
+    //     if (typeof value === 'string' && value.includes(document.getElementById("inputtosearch").value)) {
+
+    //       let check = result.find((cur) => cur == result)
+    //       if (check) {
+    //         continue
+    //       } else {
+    //         result.push(index);
+    //       }
+    //     }
+    //   });
+    // });
+
+    // console.log(result);
+
+
+    let result = [];
+
+    Sunzinebolgarray.forEach((obj, index) => {
+      let found = false;
+      Object.values(obj).forEach(value => {
+        if (!found && typeof value === 'string' && value.includes(document.getElementById("inputtosearch").value)) {
+          result.push(index);
+          found = true;
+        }
+      });
+    });
+
+    console.log(result);
+
+
+    document.getElementById("firstblog").innerHTML = ""
+
+
+
+    if (result.length == 0) {
+      document.getElementById("firstblog").innerHTML += `
+
+<div class="card mb-3 bg-success text-light p-2 m-2" style="max-width: 1040px;">
+ Nothing match your input
+</div>
+`
+    } else {
+
+      for (let index = 0; index < result.length; index++) {
+        // console.log(result[index]);
+        const element = Sunzinebolgarray[result[index]];
+        // console.log(element);
+
+
+
+        document.getElementById("firstblog").innerHTML += `
+
+<div class="card mb-3 bg-success text-light m-2" style="max-width: 1040px;">
+  <div class="row  g-0">
+    <div class="col-md-4 imgfocard2" style="background-image: url(${element.image});" id="" >
+     
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h2 class="card-title">${element.title}</h2>
+        <p class="card-text showsmallcontent">${element.content}</p>
+        <p class="card-text text-light"><small class="">Author: ${element.author}</small></p>
+        <p class="card-text text-light"><small class="">Date: ${element.date}</small></p>
+        <div>
+          <button class="btn btn-light text-success m-2" onclick="readmore(${result[index]})">read more</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`
+      }
+
+
+    }
+    document.getElementById("inputtosearch").value = ""
+  }
+
+  function deletecomment(index, i) {
+
+    // console.log(i);
+    // console.log(index, i);
+    // console.log(Sunzinebolgarray[i].comments);
+    Sunzinebolgarray[i].comments.splice(index, 1)
+    // console.log(Sunzinebolgarray[i].comments);
+
+    document.getElementById("showcommentincommentsection").innerHTML = ""
+    for (let index = 0; index < Sunzinebolgarray[i].comments.length; index++) {
+      const element = Sunzinebolgarray[i].comments[index];
+
+      if (Sunzinebolgarray[i].comments[index].name == Sunzineloged_in_user.name) {
+        document.getElementById("showcommentincommentsection").innerHTML += `
+      <div class="card text-bg-success mb-3" >
+    <div class="card-header "><p class="fw-bold fs-6 m-0">${element.name}</p></div>
+    <div class="card-body">
+      <p class="card-title">${element.thecomment}</p>
+      <p class="card-text">${element.time}</p>
+      <button class="btn btn-success text-light m-2 btn-outline-light" onclick="deletecomment(${index},${i})">Delete comment</button>
+
+    </div>
+  </div>`
+      } else {
+        document.getElementById("showcommentincommentsection").innerHTML += `
+      <div class="card text-bg-success mb-3" >
+    <div class="card-header "><p class="fw-bold fs-6 m-0">${element.name}</p></div>
+    <div class="card-body">
+      <p class="card-title">${element.thecomment}</p>
+      <p class="card-text">${element.time}</p>
+
+    </div>
+  </div>`
+      }
+
+    }
+    localStorage.setItem('Sunzinebolgarray', JSON.stringify(Sunzinebolgarray))
+  }
+
+
+
+
+
+</script>
