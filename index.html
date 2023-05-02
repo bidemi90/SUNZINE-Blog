@@ -93,7 +93,6 @@
   <main>
 
 
-
     <div class="w-100 d-flex align-center justify-content-center">
       <button class="btn btn-success text-light  my-2 w-75" onclick="newblog()" id="firstbuttonontop">
         create new blog post
@@ -136,19 +135,33 @@
   let Sunzineloged_in_user = JSON.parse(localStorage.getItem("Sunzineloged_in_user"))
   // console.log(Sunzineloged_in_user);
 
-  if (Sunzineloged_in_user == null) {
-  
-document.getElementById("login").style.display=""
-document.getElementById("logout").style.display="none"
-  } else {
-   
+  function checkifwehaveuser() {
+    if (Sunzineloged_in_user == null) {
+
+      document.getElementById("login").style.display = "block"
+      document.getElementById("logout").style.display = "none"
+
+    } else {
+      document.getElementById("login").style.display = "none"
+      document.getElementById("logout").style.display = "block"
+    }
   }
+  checkifwehaveuser()
+
+
+
+
 
   function login() {
-    console.log(1);
+    window.location.href = "login.html"
+
+
   }
   function logout() {
-    console.log(2);
+    Sunzineloged_in_user = null
+    localStorage.setItem('Sunzineloged_in_user', JSON.stringify(Sunzineloged_in_user))
+    checkifwehaveuser()
+    window.location.href = "index.html"
   }
 
   let Sunzinebolgarray = JSON.parse(localStorage.getItem("Sunzinebolgarray"))
@@ -156,43 +169,52 @@ document.getElementById("logout").style.display="none"
   if (Sunzinebolgarray == null) {
     Sunzinebolgarray = [
       {
-        title: "Lorem ipsum",
-        content: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente ullam perspiciatis expedita fuga officiis nisi dolore ab quasi at quas debitis autem, cupiditate quos nesciunt accusamus rerum? Consequatur, doloremque eum?Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente ullam perspiciatis expedita fuga officiis nisi dolore ab quasi at quas debitis autem, cupiditate quos nesciunt accusamus rerum? Consequatur, doloremque eum?Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente ullam perspiciatis expedita fuga officiis nisi dolore ab quasi at quas debitis autem, cupiditate quos nesciunt accusamus rerum? Consequatur, doloremque eum?Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente ullam perspiciatis expedita fuga officiis nisi dolore ab quasi at quas debitis autem, cupiditate quos nesciunt accusamus rerum? Consequatur, doloremque eum?Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente ullam perspiciatis expedita fuga officiis nisi dolore ab quasi at quas debitis autem, cupiditate quos nesciunt accusamus rerum? Consequatur, doloremque eum?Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente ullam perspiciatis expedita fuga officiis nisi dolore ab quasi at quas debitis autem, cupiditate quos nesciunt accusamus rerum? Consequatur, doloremque eum?",
-        image: "./images/default.jpg",
-        author: "default",
-        date: "default",
+        title: "MindTalk ",
+        content: "You are cordially invited to a special edition of the MindTalk event on Monday, 1st of May | 10am Tagged: The Merger: Skillsets and Certificates. Join us live from all our campuses and invite as many people as you can, parents, students, and anyone to benefit from this event.",
+        image: "./images/FvBwVVDXwAIYSFw.jpeg",
+        author: "SQI",
+        date: "Default",
         likedarray: [],
         comments: []
       },
       {
-        title: "Lorem ipsum",
-        content: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente ullam perspiciatis expedita fuga officiis nisi dolore ab quasi at quas debitis autem, cupiditate quos nesciunt accusamus rerum? Consequatur, doloremque eum?Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente ullam perspiciatis expedita fuga officiis nisi dolore ab quasi at quas debitis autem, cupiditate quos nesciunt accusamus rerum? Consequatur, doloremque eum?Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente ullam perspiciatis expedita fuga officiis nisi dolore ab quasi at quas debitis autem, cupiditate quos nesciunt accusamus rerum? Consequatur, doloremque eum?Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente ullam perspiciatis expedita fuga officiis nisi dolore ab quasi at quas debitis autem, cupiditate quos nesciunt accusamus rerum? Consequatur, doloremque eum?Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente ullam perspiciatis expedita fuga officiis nisi dolore ab quasi at quas debitis autem, cupiditate quos nesciunt accusamus rerum? Consequatur, doloremque eum?Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente ullam perspiciatis expedita fuga officiis nisi dolore ab quasi at quas debitis autem, cupiditate quos nesciunt accusamus rerum? Consequatur, doloremque eum?",
-        image: "./images/default.jpg",
-        author: "default",
-        date: "default",
+        title: "MindTalk ",
+        content: "You are cordially invited to a special edition of the MindTalk event on Monday, 1st of May | 10am Tagged: The Merger: Skillsets and Certificates. Join us live from all our campuses and invite as many people as you can, parents, students, and anyone to benefit from this event.",
+        image: "./images/FvBwVVDXwAIYSFw.jpeg",
+        author: "SQI",
+        date: "Default",
         likedarray: [],
         comments: []
       },
       {
-        title: "Lorem ipsum",
-        content: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente ullam perspiciatis expedita fuga officiis nisi dolore ab quasi at quas debitis autem, cupiditate quos nesciunt accusamus rerum? Consequatur, doloremque eum?Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente ullam perspiciatis expedita fuga officiis nisi dolore ab quasi at quas debitis autem, cupiditate quos nesciunt accusamus rerum? Consequatur, doloremque eum?Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente ullam perspiciatis expedita fuga officiis nisi dolore ab quasi at quas debitis autem, cupiditate quos nesciunt accusamus rerum? Consequatur, doloremque eum?Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente ullam perspiciatis expedita fuga officiis nisi dolore ab quasi at quas debitis autem, cupiditate quos nesciunt accusamus rerum? Consequatur, doloremque eum?Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente ullam perspiciatis expedita fuga officiis nisi dolore ab quasi at quas debitis autem, cupiditate quos nesciunt accusamus rerum? Consequatur, doloremque eum?Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente ullam perspiciatis expedita fuga officiis nisi dolore ab quasi at quas debitis autem, cupiditate quos nesciunt accusamus rerum? Consequatur, doloremque eum?",
-        image: "./images/default.jpg",
-        author: "default",
-        date: "default",
+        title: "MindTalk ",
+        content: "You are cordially invited to a special edition of the MindTalk event on Monday, 1st of May | 10am Tagged: The Merger: Skillsets and Certificates. Join us live from all our campuses and invite as many people as you can, parents, students, and anyone to benefit from this event.",
+        image: "./images/FvBwVVDXwAIYSFw.jpeg",
+        author: "SQI",
+        date: "Default",
         likedarray: [],
         comments: []
       },
       {
-        title: "Lorem ipsum",
-        content: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente ullam perspiciatis expedita fuga officiis nisi dolore ab quasi at quas debitis autem, cupiditate quos nesciunt accusamus rerum? Consequatur, doloremque eum?Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente ullam perspiciatis expedita fuga officiis nisi dolore ab quasi at quas debitis autem, cupiditate quos nesciunt accusamus rerum? Consequatur, doloremque eum?Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente ullam perspiciatis expedita fuga officiis nisi dolore ab quasi at quas debitis autem, cupiditate quos nesciunt accusamus rerum? Consequatur, doloremque eum?Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente ullam perspiciatis expedita fuga officiis nisi dolore ab quasi at quas debitis autem, cupiditate quos nesciunt accusamus rerum? Consequatur, doloremque eum?Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente ullam perspiciatis expedita fuga officiis nisi dolore ab quasi at quas debitis autem, cupiditate quos nesciunt accusamus rerum? Consequatur, doloremque eum?Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente ullam perspiciatis expedita fuga officiis nisi dolore ab quasi at quas debitis autem, cupiditate quos nesciunt accusamus rerum? Consequatur, doloremque eum?",
-        image: "./images/default.jpg",
-        author: "default",
-        date: "default",
+        title: "MindTalk ",
+        content: "You are cordially invited to a special edition of the MindTalk event on Monday, 1st of May | 10am Tagged: The Merger: Skillsets and Certificates. Join us live from all our campuses and invite as many people as you can, parents, students, and anyone to benefit from this event.",
+        image: "./images/FvBwVVDXwAIYSFw.jpeg",
+        author: "SQI",
+        date: "Default",
         likedarray: [],
         comments: []
-
       },
-    ]
+      {
+        title: "MindTalk ",
+        content: "You are cordially invited to a special edition of the MindTalk event on Monday, 1st of May | 10am Tagged: The Merger: Skillsets and Certificates. Join us live from all our campuses and invite as many people as you can, parents, students, and anyone to benefit from this event.",
+        image: "./images/FvBwVVDXwAIYSFw.jpeg",
+        author: "SQI",
+        date: "Default",
+        likedarray: [],
+        comments: []
+      },
+      
+      ]
 
     localStorage.setItem('Sunzinebolgarray', JSON.stringify(Sunzinebolgarray))
 
@@ -251,6 +273,11 @@ document.getElementById("logout").style.display="none"
 
 
   function newblog() {
+
+    if (Sunzineloged_in_user == null) {
+      window.location.href = "login.html"
+    }
+
     document.getElementById("firstbuttonontop").style.display = "none"
     document.getElementById("firstblog").innerHTML = `
   <div class="col-sm-8 col-lg-6 p-2 m-auto my-3 bg-success text-light postbox m-2">
@@ -413,6 +440,9 @@ document.getElementById("logout").style.display="none"
   }
 
   function postcommenttotheblog(i) {
+    if (Sunzineloged_in_user == null) {
+      window.location.href = "login.html"
+    }
     let thetime = new Date()
     let thedate = thetime.getDate() + "/" + thetime.getMonth() + "/" + thetime.getFullYear()
     let time = thetime.getHours() + ":" + thetime.getMinutes() + ":" + thetime.getSeconds()
@@ -460,6 +490,11 @@ document.getElementById("logout").style.display="none"
   }
 
   function likethepost(i) {
+
+    if (Sunzineloged_in_user == null) {
+      window.location.href = "login.html"
+    }
+
     // console.log(Sunzinebolgarray[i].likedarray);
     Sunzinebolgarray[i].likedarray.push({
       name: Sunzineloged_in_user.name,
@@ -477,6 +512,9 @@ document.getElementById("logout").style.display="none"
 
   }
   function unlikethepost(i) {
+    if (Sunzineloged_in_user == null) {
+      window.location.href = "login.html"
+    }
     // console.log(Sunzinebolgarray[i].likedarray);
 
     let checkifyoulike = Sunzinebolgarray[i].likedarray.find((currentuserlike) => currentuserlike.name == Sunzineloged_in_user.name)
@@ -496,13 +534,22 @@ document.getElementById("logout").style.display="none"
     document.getElementById("firstbuttonontop").style.display = "block"
     document.getElementById("firstblog").innerHTML = ""
 
-    for (let index = 0; index < Sunzinebolgarray.length; index++) {
-      const element = Sunzinebolgarray[index];
 
-      if (element.author != Sunzineloged_in_user.name) {
-        continue
-      } else {
-        document.getElementById("firstblog").innerHTML += `
+    if (Sunzineloged_in_user == null) {
+      document.getElementById("firstblog").innerHTML += `
+
+<div class="card mb-3 bg-success text-light m-2 p-2" style="max-width: 1040px;">
+    login to check your blog
+    </div>
+`
+    } else {
+      for (let index = 0; index < Sunzinebolgarray.length; index++) {
+        const element = Sunzinebolgarray[index];
+
+        if (element.author != Sunzineloged_in_user.name) {
+          continue
+        } else {
+          document.getElementById("firstblog").innerHTML += `
 
 <div class="card mb-3 bg-success text-light m-2" style="max-width: 1040px;">
       <div class="row  g-0">
@@ -524,7 +571,17 @@ document.getElementById("logout").style.display="none"
       </div>
     </div>
 `
+        }
       }
+
+    }
+    if (document.getElementById("firstblog").innerHTML == "") {
+      document.getElementById("firstblog").innerHTML += `
+
+<div class="card mb-3 bg-success text-light m-2 p-2" style="max-width: 1040px;">
+      you have no blog
+    </div>
+`
     }
 
   }
@@ -539,8 +596,15 @@ document.getElementById("logout").style.display="none"
   function yourlikedblogs() {
     document.getElementById("firstbuttonontop").style.display = "block"
     document.getElementById("firstblog").innerHTML = ""
+if (Sunzineloged_in_user==null) {
+  document.getElementById("firstblog").innerHTML =`
+  <div class="card mb-3 bg-success text-light m-2 p-2" style="max-width: 1040px;">
+      login to check your liked blog
+    </div>
+  `
 
-    for (let index = 0; index < Sunzinebolgarray.length; index++) {
+} else {
+  for (let index = 0; index < Sunzinebolgarray.length; index++) {
       const element = Sunzinebolgarray[index];
 
 
@@ -572,6 +636,15 @@ document.getElementById("logout").style.display="none"
         continue
       }
     }
+    if (document.getElementById("firstblog").innerHTML == "") {
+      document.getElementById("firstblog").innerHTML += `
+
+<div class="card mb-3 bg-success text-light m-2 p-2" style="max-width: 1040px;">
+     you don't have any liked blog
+    </div>
+`
+    }
+}
 
   }
 
