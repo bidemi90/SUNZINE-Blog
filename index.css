@@ -1,0 +1,41 @@
+.givepadd {
+    padding: 30px;
+  }
+
+  .topcardimg {
+    height: 400px;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+
+  .imgfocard2 {
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-radius: inherit;
+  }
+
+  .postbox {
+    border-radius: 10px;
+  }
+
+  .firstblog {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+  }
+
+  .imgholder {
+    width: 100%;
+    max-width: 100%;
+    height: 200px;
+
+  }
+
+  .showsmallcontent {
+    max-height: 150px;
+    overflow: hidden;
+  }
